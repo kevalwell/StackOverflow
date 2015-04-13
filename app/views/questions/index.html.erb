@@ -1,0 +1,21 @@
+<body>
+	<div id='all_questions'>
+		<p id='ui_title'>All Questions</p>
+			<% @questions.each do |question| %>
+				<div class='ind_ques'>
+					<div class="ind_ques_contents">
+						<p><%= link_to "#{question.title}", question_path(question.id), :class => 'qi_link' %></p>
+						<p><%= question.content %></p>
+						<p> <img class='ui_avatar_question' src='<%= question.creator.avatar %>'/> </p>
+						<p><%= link_to "#{question.creator.name}", user_path(question.creator_id), :class => 'qi_link' %></p>
+					</div>
+				</div>
+			<% end %>
+
+			<% if false %>
+			<li><%= link_to 'sign up', signup_path %></li>
+			<li><%= link_to 'login', login_path %></li>
+			<% end %>
+	<div>
+</body>
+

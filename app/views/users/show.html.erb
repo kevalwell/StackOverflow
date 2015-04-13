@@ -1,0 +1,32 @@
+<p id='us_name'><%= @user.name %></p>
+<div class="user_show">
+	<ul>
+	  <li><%= image_tag @user.avatar, :id => 'us_avatar' %></li>
+	  <li class='user_info'><%= @user.age %></li>
+	  <li class='user_info'><%= @user.location %></li>
+	</ul>
+</div>
+<p class='us_title'>Questions</p>
+<div class="user_show">
+	<% @user.questions.each do |question| %>
+	<ul>
+	  <li><%= link_to "#{question.title}", question_path(question.id), class: 'us_questions' %></li>
+	</ul>
+
+	<%end%>
+</div>
+
+<p class='us_title'>Answers</p>
+<div class="user_show">
+	<% @user.answers.each do |answer| %>
+	<ul>
+	  <li><%= link_to "#{answer.content}", question_path(answer.question_id), class:'us_answers' %></li>
+	</ul>
+	<%end%>
+</div>
+
+<% if session[:user_id] == @user.id %>
+<%= link_to "Edit my profile", edit_user_path, id: 'edit_prof' %>
+<%= link_to "Delete my profile", @user, method: :delete, data: {confirm: "Are you sure?"}, id: 'delete_prof' %>
+<% end %>
+
